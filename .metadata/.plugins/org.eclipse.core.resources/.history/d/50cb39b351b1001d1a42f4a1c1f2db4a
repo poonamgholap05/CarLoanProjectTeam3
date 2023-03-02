@@ -1,0 +1,360 @@
+package com.cjc.controller;
+
+import java.io.*;
+import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.*;
+import java.io.IOException;
+import java.util.List;
+import java.util.Random;
+import java.util.Date;
+import javax.servlet.http.HttpServletResponse;
+import javax.swing.text.Document;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.cjc.model.Customer;
+import com.cjc.model.CustomerDocuments;
+import com.cjc.model.Enquiry;
+import com.cjc.model.ExcelGenrator;
+import com.cjc.model.Ledger;
+import com.cjc.model.LoanDisbursement;
+import com.cjc.model.Sanction;
+import com.cjc.serviceI.ServiceI;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.web.multipart.MultipartFile;
+
+@CrossOrigin("*")
+@RestController
+//@RequestMapping("/document")
+public class HomeController {
+	@Autowired
+	ServiceI usi;
+	@GetMapping(value="/getAllData")
+	public List<Customer> getLoginPage(){
+		List<Customer> al=usi.getAllData();
+		
+		
+			return al;
+	}
+	@PostMapping(value="/savecust")
+	public Customer savedata(@RequestBody Customer c)
+	{
+		return usi.savecostmer(c);
+	}
+	@PostMapping(value="/postSingleData")
+	public String postSingleData(@RequestBody Customer s2 ) throws IOException {
+		
+	
+	
+		usi.saveData(s2);	
+		return "success";
+	}
+	
+	@PutMapping("/updateSingle")
+	public String updateSingleData(@RequestBody Customer s2) {
+		usi.updateData(s2);
+	
+		return "success";
+	}
+	@DeleteMapping("/deleteData/{customerId}")
+	public String deleteSingleData(@PathVariable int customerId) {
+		System.out.println(customerId);
+		usi.deleteData(customerId);
+		return "success";
+	}
+	@GetMapping(value="/getSingleData/{customerId}")
+	public Customer getSingledata(@PathVariable int customerId) {
+		Customer e=usi.getSingleData(customerId);
+		return e;
+	}
+	
+	@GetMapping(value ="/getbystatus/{status}")
+	public List<Customer> getListByStatus(@PathVariable("status") String status )
+	{		
+		return usi.getByStatus(status);		
+	}
+	/*@GetMapping("/changeStatus/{id}")
+	public String changeStatus(@PathVariable Integer id) {
+		
+		
+		boolean status = usi.changeStatus(id);
+						
+		 if(status==true)
+		 {
+			 return "Success";
+			 
+		 }
+		 else
+		 {
+			 return "Operation Fail";
+		 }
+		 
+	}
+	
+	@GetMapping("/changeStatusFailed/{id}")
+	public String changeStatusFailed(@PathVariable Integer id) {
+		
+		
+		boolean status = usi.changeStatusFailed(id);
+						
+		 if(status==true)
+		 {
+			 return "Success";
+			 
+		 }
+		 else
+		 {
+			 return "Operation Fail";
+		 }
+		 
+	}*/
+	
+	
+	
+	@PostMapping(value = "/document")
+	public void saveDoc(@RequestParam(value = "addressProof") MultipartFile file1,
+			@RequestParam(value = "bankCheque") MultipartFile file2,
+			@RequestParam(value = "pancarde") MultipartFile file3, 
+			@RequestParam(value="profilePhoto")MultipartFile file4, 
+			@RequestParam(value="salarySlips")MultipartFile file5,
+			@RequestParam(value="bankstatement")MultipartFile file6,
+			@RequestParam(value="signature")MultipartFile file7,
+			@RequestPart("custId") String custId) {
+
+		try {
+			ObjectMapper om = new ObjectMapper();
+			CustomerDocuments d = new CustomerDocuments();
+			int allPersonalDocs= om.readValue(custId, Integer.class);
+
+			d.setCustId(allPersonalDocs);
+			d.setAddressProof(file1.getBytes());
+			d.setBankcheque(file2.getBytes());
+			d.setBankStatement(file6.getBytes());
+			d.setPancard(file3.getBytes());
+			d.setProfilePhoto(file4.getBytes());
+			d.setSalaryslip(file5.getBytes());
+			d.setSignature(file7.getBytes());
+			
+
+			usi.saveDoc(d);
+		} catch (Exception e) {
+
+			e.printStackTrace();
+			// TODO: handle exception
+		}
+
+	}
+	
+	
+	@Autowired
+	public JavaMailSender javamailsender;
+//	@GetMapping(value="/getAllDataEnquiry")
+//	public List<Enquiry> getLoginPage1(){
+//		List<Enquiry> al=usi.getAllData1();		
+//			return al;
+//	}
+//	@PostMapping(value="/postSingleDataEnquiry")
+//	public String postSingleData(@RequestBody Enquiry s2) {
+//		
+//		usi.saveData1(s2);	
+//		return "success";
+//	}
+//	@PutMapping("/updateSingleEnquiry")
+//	public String updateSingleData(@RequestBody Enquiry s2) {
+//		usi.updateData1(s2);
+//	
+//		return "success";
+//	}
+//	@DeleteMapping("/deleteDataEnquiry/{fid}")
+//	public String deleteSingleData1(@PathVariable int fid) {
+//		System.out.println(fid);
+//		usi.deleteData(fid);
+//		return "success";
+//	}
+//	@GetMapping(value="/getSingleDataEnquiry/{cID}")
+//	public Enquiry getSingledata1(@PathVariable int cID) {
+//		Enquiry e=usi.getSingleData1(cID);
+//		return e;
+//	}
+//	
+//	@PostMapping("/getCibilEnquiry/{cID}")
+//	public Integer getcibilScore(@PathVariable int cID) {
+//		Enquiry e=usi.getSingleData1(cID);
+//		String endpointUrl="http://localhost:9092/document/creditscore";
+//		
+//		RestTemplate rt=new RestTemplate();
+//		ResponseEntity<Integer> cib=rt.getForEntity(endpointUrl, Integer.class);
+//		Integer cibil=cib.getBody();
+//		//Cibil c=new Cibil();
+//		
+//		e.setCScore(cibil);
+//		if(cibil>700) {
+//			e.setCibilstatus("eligible");			
+//		}
+//		else {
+//			e.setCibilstatus("lowcibil");
+//		}
+//		usi.saveData1(e);
+//		return cibil;
+//	}
+//	@GetMapping("/mailsendEnquiry/{cID}")
+//	public Enquiry sendMail(@PathVariable int cID) {
+//		Enquiry e=usi.getSingleData1(cID);
+//		System.out.println(e.getCibilstatus());
+//		String status=e.getCibilstatus();
+//		System.out.println(status);		
+//			SimpleMailMessage m=new SimpleMailMessage();
+//			m.setTo(e.getEmail());
+//			m.setSubject("Enquiry Accepted Mail");
+//			m.setText("For further enquiry, your profile will be submitted to bank manager and further"
+//					+ "you will be acknowledged");			
+//			javamailsender.send(m);		
+//		return e;
+//	}
+//	@GetMapping("/mailrejectsendEnquiry/{cID}")
+//	public Enquiry sendRejectedMail(@PathVariable int cID) {
+//		Enquiry e=usi.getSingleData1(cID);
+//		System.out.println(e.getCibilstatus());
+//		String status=e.getCibilstatus();
+//		System.out.println(status);		
+//			SimpleMailMessage m=new SimpleMailMessage();
+//			m.setTo(e.getEmail());
+//			m.setSubject("Loan Rejection Mail");
+//			m.setText("We are sorry to inform that due to low cibil your enquiry is rejected");			
+//			javamailsender.send(m);		
+//		return e;
+//	}
+@GetMapping("/creditscore")
+	public ResponseEntity<Integer> getCreditScore(){
+		int min=600;
+		int max=900;
+		Random r=new Random();
+		int showMe=r.nextInt(min);
+		return new ResponseEntity<>(showMe,HttpStatus.OK);		
+	}
+
+	@PostMapping(value="/postSingleDataSanction")
+	public String postSingleData2(@RequestBody Sanction s2 ) throws IOException {	
+		usi.saveData2(s2);	
+		return "success";
+	}
+	/*@GetMapping("/mailrejectsendSanction/{customerId}")
+	public Customer sendSanctionMail(@PathVariable int customerId) {
+		Customer e=usi.getSingleData2(customerId);
+	
+		
+			SimpleMailMessage m=new SimpleMailMessage();
+			m.setTo(e.getCustomerEmail());
+			m.setSubject("Loan sanction Mail");
+			m.setText("Greetings! dear  "
+					+ e.getCustomerName()+ " we are delighted to inform that your to loan is sanctioned." 
+					+"following are the details.\n"+
+					"ApplicantName: "+e.getSanctiondetails().getApplicantName()+"\n"+
+					"SanctionDate: "+e.getSanctiondetails().getSanctionDate()+"\n"+
+					"ApplicantName: "+e.getSanctiondetails().getContactDetails()+"\n"+
+					"ContactDetails: "+e.getSanctiondetails().getLoanAmtSanctioned()+"\n"+
+					"InterestType: "+e.getSanctiondetails().getInterestType()+"\n"+
+					"RateOfInterest: "+e.getSanctiondetails().getRateOfInterest()+"\n"+
+					"LoanTenure: "+e.getSanctiondetails().getLoanTenure()+"\n"+
+					"MonthlyEmiAmount: "+e.getSanctiondetails().getMonthlyEmiAmount()+"\n"+
+					"ModeOfPayment: "+e.getSanctiondetails().getModeOfPayment()+"\n"
+									
+					);
+			
+			javamailsender.send(m);		
+		return e;
+	}*/
+	 
+	/* @GetMapping("/export-to-excel")
+	    public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+	        response.setContentType("application/octet-stream");
+	        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+	        String currentDateTime = dateFormatter.format(new Date());
+
+	        String headerKey = "Content-Disposition";
+	        String headerValue = "attachment; filename=Ledger" + currentDateTime + ".xlsx";
+	        response.setHeader(headerKey, headerValue);
+
+	        List <Ledger> data = usi.getTheListLedger();
+	        ExcelGenrator generator = new ExcelGenrator(data);
+	        generator.generateExcelFile(response);
+	    }
+	
+	 @GetMapping("/mailsendDefaulter")
+		public List <Ledger> sendDefaulterMail() {
+		    List <Ledger> data = usi.getTheListLedger();
+			
+			data.forEach((l)->{
+				if(l.getDefaulterCount()>3) {
+					int l1=l.getLedgerId();
+					Customer u=usi.getcustomerbyledgerId(l);
+					SimpleMailMessage m=new SimpleMailMessage();
+					m.setTo(u.getCustomerEmail());
+					m.setSubject("Loan Defaulter Mail");
+					m.setText(u.getCustomerName()+" Your loan installment is pending kindly pay within 1 month or strict action will be taken");			
+					javamailsender.send(m);	
+				}
+			});
+					
+						
+			return data;
+		}
+	/* @GetMapping("/mailsendDisbursment/{customerId}")
+		public Customer sendDisbursmentMail(@PathVariable int customerId) {
+		    Customer u = usi.getSingleData(customerId);		
+					
+					SimpleMailMessage m=new SimpleMailMessage();
+					m.setTo(u.getCustomerEmail());
+					m.setSubject("Loan Disbursment Mail");
+					m.setText(u.getCustomerName()+" congratulation your loan request is accepted, following are the details of your disbursement kindly check your account for the same."
+							+"\n"+"AgreementId: "+u.getLoanDisbursementDetails().getAgreementId()+"\n"
+							+"LoanNo: "+u.getLoanDisbursementDetails().getLoanNo()+"\n"
+							+"AgreementDate: "+u.getLoanDisbursementDetails().getAgreementDate()+"\n"
+							+"AmountPayType: "+u.getLoanDisbursementDetails().getAmountPayType()+"\n"
+							+"TotalAmount: "+u.getLoanDisbursementDetails().getTotalAmount()+"\n"
+							+"BankName: "+u.getLoanDisbursementDetails().getBankName()+"\n"
+							+"AccountNumber: "+u.getLoanDisbursementDetails().getAccountNumber()+"\n"
+							+"IFSCCode: "+u.getLoanDisbursementDetails().getIFSCCode()+"\n"
+							+"AccountType: "+u.getLoanDisbursementDetails().getAccountType()+"\n"
+							+"TransferAmount: "+u.getLoanDisbursementDetails().getTransferAmount()+"\n"
+							+"PaymentStatus: "+u.getLoanDisbursementDetails().getPaymentStatus()+"\n"
+							+"AmountPaidDate: "+u.getLoanDisbursementDetails().getAmountPaidDate()+"\n"
+							
+							
+							);			
+					javamailsender.send(m);	
+				
+			
+					
+						
+			return u;
+		}*/
+	
+	
+	
+	
+}

@@ -1,0 +1,118 @@
+package com.cjc.serviceImpl;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.cjc.DaoI.DaoI;
+import com.cjc.DaoI.DaoIDoc;
+
+import com.cjc.DaoI.DaoiLedger;
+import com.cjc.DaoI.DaoiSanction;
+import com.cjc.DaoI.ReportCommunication;
+import com.cjc.model.Customer;
+import com.cjc.model.CustomerDocuments;
+import com.cjc.model.Email;
+import com.cjc.model.Enquiry;
+import com.cjc.model.Ledger;
+import com.cjc.model.SanctionLetter;
+import com.cjc.serviceI.ServiceI;
+@Service
+public class ServiceImpl implements ServiceI{
+@Autowired
+DaoI udi;
+@Autowired 
+DaoIDoc udic;
+
+@Autowired
+DaoiLedger udil;
+	@Override
+	public List<Customer> getAllData() {
+		List<Customer> l=(List<Customer>) udi.findAll();
+		return l;
+	}
+	@Override
+	public void saveData(Customer s2) {
+		udi.save(s2);
+		
+	}
+	@Override
+	public void updateData(Customer s2) {
+		
+		udi.save(s2);
+		
+	}
+	@Override
+	public void deleteData(int fid) {
+		udi.deleteById(fid);
+		
+	}
+	@Override
+	public Customer getSingleData(int customerId) {
+	Customer u=udi.findAllBycustomerId(customerId);
+		return u;
+	}
+//	@Override
+//	public Enquiry getSingleData1(String username, String password) {
+//		Enquiry u=udi.findAllByUsernameAndPassword(username,password);
+//		return u;
+//	}
+//	@Override
+//	public List<Enquiry> getSingleDatabystaff(String stafftype) {
+//		List<Enquiry> u=udi.findAllByStafftype(stafftype);
+//		return u;
+//	}
+	
+	
+	
+	
+		
+//		@Autowired
+//		DaoiSanction udiS;
+//		@Override
+//		public void saveData2(SanctionLetter s2) {
+//			
+//			udiS.save(s2);
+//		}
+//		@Override
+//		public Customer getSingleData2(int customerId) {
+//			Customer c= udi.findAllBycustomerId(customerId);
+//			return c;
+//		}
+//		@Override
+//		public List<Ledger> getTheListLedger() {
+//			List<Ledger> u=(List<Ledger>) udil.findAll();
+//			return u;
+//		}
+//		@Override
+//		public Customer getcustomerbyledgerId(Ledger l) {
+//			Customer u=udi.findAllByledger(l);
+//			return u;
+//		}
+		@Override
+		public Customer savecostmer(Customer c) {
+			
+			return udi.save(c);
+		}
+@Override
+public void saveDoc(CustomerDocuments d) {
+	udic.save(d);
+}
+@Override
+public List<Customer> getByStatus(String status) {
+	
+	return udi.findByStatus(status);
+}
+
+	
+
+
+	
+}
+	
+
+		
+		
+

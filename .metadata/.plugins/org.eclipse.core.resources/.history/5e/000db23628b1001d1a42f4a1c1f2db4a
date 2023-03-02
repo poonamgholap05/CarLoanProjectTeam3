@@ -1,0 +1,53 @@
+package com.cjc.serviceI;
+
+import java.util.List;
+
+import javax.swing.text.Document;
+
+import com.cjc.model.Customer;
+import com.cjc.model.CustomerDocuments;
+import com.cjc.model.Enquiry;
+import com.cjc.model.Ledger;
+import com.cjc.model.Sanction;
+
+public interface ServiceI  {
+	
+	
+	
+	public Customer savecostmer(Customer c);
+
+	List<Customer> getAllData();
+
+	void saveData(Customer s2);
+
+	void updateData(Customer s2);
+
+	void deleteData(int customerId);
+
+	Customer getSingleData(int customerId);
+	public List<Customer>getByStatus( String status);
+	
+	
+//	public boolean changeStatus(Integer id);
+//	public boolean changeStatusFailed(Integer id);
+	public void saveDoc(CustomerDocuments d);
+    
+	//List<CustomerDocuments> saveData1(CustomerDocuments d);
+
+//	Enquiry getSingleData1(String username, String password);
+//
+//	List<Enquiry> getSingleDatabystaff(String stafftype);
+	
+	
+
+//	void saveData2(SanctionLetter s2);
+//
+//	Customer getSingleData2(int customerId);
+//
+//	
+//
+//	List<Ledger> getTheListLedger();
+//
+//	Customer getcustomerbyledgerId(Ledger l);
+
+}
