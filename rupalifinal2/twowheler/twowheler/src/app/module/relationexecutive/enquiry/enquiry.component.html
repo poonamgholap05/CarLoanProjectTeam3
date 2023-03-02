@@ -1,0 +1,49 @@
+<h1>New Enquiry</h1>
+<mat-card>
+  <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+  <form [formGroup]="enquiryForm" ><!--(ngSubmit)="onSave()"-->
+
+    
+      <ng-template >name</ng-template>
+      <mat-form-field>
+
+        <input matInput type="text" class="form-control" placeholder="cid"  formControlName="cid" >
+      </mat-form-field> <br>
+      <mat-form-field>
+
+        <input matInput type="text" class="form-control" placeholder="first Name"  formControlName="firstName" >
+      </mat-form-field> <br>
+      <mat-form-field>
+       <input matInput type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"placeholder="Age" formControlName="age">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"placeholder="email" formControlName="email">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" class="form-control" placeholder="MobileNo"formControlName="mobileNo">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"class="form-control" placeholder="PancardNo" formControlName="pancardNo">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"class="form-control" placeholder="Cibilscore" formControlName="cibilscore">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"class="form-control" placeholder="status" formControlName="status">
+      </mat-form-field><br>
+      <div>
+        <button type="submit" (click)="onSave()"  class="btn btn-danger" mat-raised-button color="primary">Submit</button>
+      </div>
+      <!-- onclick="showSwal('success-message')" -->
+ </form>
+</mat-card-content>
+</mat-card>
+
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+
+</div>
+

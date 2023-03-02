@@ -1,0 +1,59 @@
+<section class="intro">
+    <div class="bg-image h-100" >
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="text-center pt-5">      
+            <h2 style="margin-bottom:20px;">Enquiry List</h2>          
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 300px; ">
+                    <table class="table table-striped mb-0">
+                      <thead style="background-color: #3081d7;">
+                        <tr>
+                          <th scope="col">Cid</th>
+                          <th scope="col">FirstName</th>
+                          <th scope="col">LastName</th>
+                          <th scope="col">EmailId</th>  
+                          <th scope="col">Age</th>      
+                          <th scope="col">MobileNo</th> 
+                          <th scope="col">pancardNo</th>              
+                          <th scope="col">Status</th>
+                          <th scope="col">Cibilscore</th>
+                          
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let e of e"> 
+               
+                          <td>{{e.cid}}</td>  
+                          <td>{{e.firstName}}</td> 
+                          <td>{{e.lastName}}</td>
+                          <td>{{e.mobileNo}}</td>  
+                          <td>{{e.email}}</td>
+                          <td>{{e.age}}</td> 
+                          <td>{{e.pancardNo}}</td> 
+                          <td>{{e.status}}</td> 
+                                     
+                   
+                          <td *ngIf="e.cibilscore==0">
+                           <input type="button" (click)="getCibil(e.cid)" class="btn btn-success" value="Get cibil"> 
+                          </td>
+                          <td *ngIf="e.cibilscore!==0">
+                            {{e.cibilscore}}
+                           </td>
+            
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

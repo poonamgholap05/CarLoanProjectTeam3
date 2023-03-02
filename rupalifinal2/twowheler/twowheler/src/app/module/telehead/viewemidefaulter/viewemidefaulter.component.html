@@ -1,0 +1,63 @@
+<section class="intro">
+  <div class="bg-image h-100" >
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="text-center pt-5">      
+          <h1 style="margin-bottom:15px;">Defaulter List</h1>          
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 350px; ">
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #3081d7;">
+                      <tr>
+                          <th scope="col">customerId</th>
+                          <th scope="col">customerName</th>
+                            
+                          <th scope="col">customerEmail</th> 
+                                      
+                          <th scope="col">requiredAmount</th>                        
+                          <th scope="col">sanctionId</th>  
+                          <th scope="col">sanctionAmount</th>  
+                          <th scope="col">sanctionstatus</th>
+                          <th scope="col">disbursmentId</th>  
+                          <th scope="col">disbursmentstatus</th>
+                         
+                           <th scope="col">Action</th>
+                         
+                         
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let e of e"> 
+             
+                          <td>{{e.customerId}}</td>  
+                          <td>{{e.customerName}}</td>                             
+                          <td>{{e.customerEmail}}</td>                                                              
+                          <td>{{e.requiredAmount}}</td> 
+                           <td>{{e.sanctiondetails.sanctionId}}</td>                 
+                           <td>{{e.sanctiondetails.status}}</td>  
+                           <td>{{e.sanctiondetails.loanAmtSanctioned}}</td>    
+                           <td>{{e.loanDisbursementDetails.agreementId}}</td>   
+                           <td>{{e.loanDisbursementDetails.paymentStatus}}</td>    
+                           
+                           <td> <input type="button" (click)="sentmail(e.customerId)" class="btn btn-success" value="Send Mail"> </td>
+                      </tr>
+                  </tbody>
+              </table>
+              
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+

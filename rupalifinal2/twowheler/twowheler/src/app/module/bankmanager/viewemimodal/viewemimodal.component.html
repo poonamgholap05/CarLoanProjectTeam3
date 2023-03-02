@@ -1,0 +1,89 @@
+<section class="intro">
+  <div class="bg-image h-100" >
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="text-center pt-5">      
+          <h1 style="margin-bottom:15px;">Customer List</h1>          
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 350px; ">
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #3081d7;">
+                      <tr>
+                        <th scope="col">num</th>
+                          <th scope="col">customerId</th>
+                          <th scope="col">agreementDate</th>
+                            
+                          <th scope="col">loanAmtSanctioned</th> 
+                                      
+                          <th scope="col">rateOfInterest</th>                        
+                         
+                          <th scope="col">loanTenure</th>
+                          <th scope="col">monthlyEmiAmount</th>  
+                         
+                          <th scope="col">status</th>
+                         
+                          
+                          
+                           <th scope="col">Action</th>
+                         
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let e of ce.c1"> 
+             
+                          <td>{{e.num}}</td>  
+                          <td>{{e.customerId}}</td>                             
+                          <td>{{e.agreementDate}}</td>                                                              
+                          <td>{{e.loanAmtSanctioned}}</td> 
+                        
+                           <td>{{e.rateOfInterest}}</td>  
+                           <td>{{e.loanTenure}}</td>    
+                          
+                           <td>{{e.monthlyEmiAmount}}</td>    
+                          
+                           <td>{{e.status}}</td> 
+                          
+                           <!-- <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'">
+                            <input type="button" (click)="sentDisbursementmail(e.customerId)" class="btn btn-success" value="Send Mail"> 
+                           </td>
+                           <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'">
+                             Pending
+                             </td>
+                             <td> <input type="button" (click)="disbursementupdate(e.loanDisbursementDetails.agreementId)" class="btn btn-success" value="Disburse Amt"> 
+                             
+                           </td>                         -->
+                             <!-- <td> <a  mat-raised-button color="primary" (click)="deleteCustomer(e.customerId)" style="margin-left: 5px;">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>  -->
+                          <!-- <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemi(e.customerId) "  class="btn btn-success" value="GenerateEmi">
+                             
+                          </td>
+                          <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                            Pending
+                          </td>
+                         <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemiexcel(e.customerId) "  class="btn btn-success" value="Excel">
+                             
+                           </td>
+                           <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                             Pending
+                           </td>
+                            
+                           <td>
+                            <input type="button" (click)="pdf(e.customerId)" class="btn btn-success" value="PDF"> 
+                           </td>   -->
+                           
+                           <button type="button"  (click)="presspaid(e.emiid,e)" value="Updateemi">Paid</button>
+                            <!-- <td><button (click)="openModal('custom-modal-1')">Open Modal 1</button></td>  --> 
+                             
+                        
+
+
+
+
+

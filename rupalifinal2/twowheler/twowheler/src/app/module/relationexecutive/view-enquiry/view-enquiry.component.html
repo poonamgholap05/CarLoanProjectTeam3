@@ -1,0 +1,82 @@
+<section class="intro">
+    <div class="bg-image h-100" >
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="text-center pt-5">      
+            <h1 style="margin-bottom:15px;">Enquiry List</h1>          
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 350px; ">
+                    <table class="table table-striped mb-0">
+                      <thead style="background-color: #3081d7;">
+                        <tr>
+                            <th scope="col">Cid</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">EmailId</th>  
+                            <th scope="col">Age</th>      
+                            <th scope="col">MobileNo</th> 
+                            <th scope="col">pancardNo</th>              
+                            <th scope="col">Status</th>
+                            <th scope="col">edit</th>
+                            <th scope="col">delete</th>
+                           
+                          
+                          <th scope="col">Action</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let e of e"> 
+               
+                            <td>{{e.cid}}</td>  
+                            <td>{{e.firstName}}</td> 
+                            <td>{{e.lastName}}</td>
+                            <td>{{e.email}}</td>
+                            <td>{{e.age}}</td> 
+                            <td>{{e.mobileNo}}</td>  
+                          
+                        
+                           <td>{{e.pancardNo}}</td> 
+                            <td>{{e.status}}</td> 
+                                              
+                          
+                            <td> <a mat-raised-button color="primary" (click)="editEnquiry(e)">
+                                <i class="fa fa-edit"></i>
+                             </a></td>                        
+                             <td> <a  mat-raised-button color="primary" (click)="deleteEnquiry(e.cid)" style="margin-left: 5px;">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td> 
+                          <td *ngIf="e.status=='eligible'">
+                           <button routerLink="../recustomer" mat-raised-button color="success" style=" width:150px;" (click)="update(e)">register</button> 
+                          </td>
+                          <td *ngIf="e.status=='Enquiry'">
+                            <button class="btn btn-warning" mat-raised-button color="accent" style=" width:150px;" disabled>pending</button> 
+                           </td>  
+                           <td *ngIf="e.status=='lowCibil'">
+                            <button class="btn btn-danger" mat-raised-button color="warn" style=" width:150px;" (click)="rejectmail(e.cid)">rejection mail</button> 
+                           </td> 
+                           <td *ngIf="e.status=='rejected'">
+                            <button  class="btn btn-dark" mat-raised-button color="success" style=" width:150px;" disabled>rejected</button> 
+                           </td> 
+                           <td *ngIf="e.status=='registred'">
+                            <button  class="btn btn-success" mat-raised-button color="warn" style=" width:150px;" disabled>registered</button> 
+                           </td>           
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+

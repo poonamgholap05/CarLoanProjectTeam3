@@ -1,0 +1,63 @@
+<h1 style="text-align: center;">Disbursment Letter</h1>
+<mat-card>
+  <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+<mat-vertical-stepper [linear]="false" #stepper animationDuration="2000">
+  <form [formGroup]="loanDisbursementDetails" (ngSubmit)="onSave()">
+  <mat-step label="loanDisbursementDetails">
+    
+      <ng-template matStepLabel>loanDisbursementDetails</ng-template>
+
+    
+      <mat-form-field>
+          <input matInput type="text" class="form-control"  placeholder=" agreementId " formControlName="agreementId">
+        </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text" class="form-control"  placeholder=" loanNo" formControlName="loanNo">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="agreementDate" formControlName="agreementDate">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" amountPayType" formControlName="amountPayType">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" totalAmount" formControlName="totalAmount">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" bankName" formControlName="bankName" >
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" accountNumber" formControlName="accountNumber">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" IFSCCode" formControlName="IFSCCode">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" accountType" formControlName="accountType">
+    </mat-form-field><br>
+    
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" transferAmount" formControlName="transferAmount">
+    </mat-form-field><br>
+    <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder=" paymentStatus" formControlName="paymentStatus">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder=" amountPaidDate" formControlName="amountPaidDate">
+      </mat-form-field><br>
+      
+      <div>
+       
+        <button mat-raised-button color="success"  type="submit"  >Submit</button>
+        <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+      </div>
+  </mat-step>
+  </form>
+</mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>
+
+
+
+
+

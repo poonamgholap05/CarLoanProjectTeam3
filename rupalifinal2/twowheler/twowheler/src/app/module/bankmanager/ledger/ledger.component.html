@@ -1,0 +1,76 @@
+<h1 style="text-align: center;">Ledger</h1>
+<mat-card>
+  <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+<mat-vertical-stepper [linear]="false" #stepper animationDuration="2000">
+  <form [formGroup]="ledger" (ngSubmit)="onSave()">
+  <mat-step label="ledger" >
+    
+      <ng-template matStepLabel>Ledger</ng-template>
+
+    
+      <mat-form-field>
+        <input matInput type="text" class="form-control"  placeholder="ledgerId" formControlName="ledgerId">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="ledgerCreatedDate" formControlName="ledgerCreatedDate">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="totalLoanAmount" formControlName="totalLoanAmount">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="payableAmountwithInterest" formControlName="payableAmountwithInterest">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" class="form-control" placeholder="tenure" formControlName="tenure">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" class="form-control" placeholder="monthlyEmi" formControlName="monthlyEmi">
+      </mat-form-field><br>
+    <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="amountPaidTillDate"	formControlName="amountPaidTillDate">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="remainingAmount"	 formControlName="remainingAmount">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="nextEmiStartDate"	formControlName="nextEmiStartDate">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="nextEmiEnddate"	formControlName="nextEmiEnddate">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="defaulterCount"	formControlName="defaulterCount">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="previousEmiStatus" formControlName="previousEmiStatus">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="currentMonthEmiStatus" formControlName="currentMonthEmiStatus">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="loanEndDate" formControlName="loanEndDate">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text"  class="form-control"  placeholder="loanStatus" formControlName="loanStatus">
+      </mat-form-field><br>
+
+
+
+      <div>
+       
+        <button mat-raised-button color="success"  type="submit" >Submit</button>
+        <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+      </div>
+  </mat-step>
+      
+    
+  </form>
+</mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>
+
+
+
+
+
+

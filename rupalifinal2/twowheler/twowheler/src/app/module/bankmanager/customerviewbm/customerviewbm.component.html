@@ -1,0 +1,130 @@
+<section class="intro">
+    <div class="bg-image h-100" >
+      <div class="mask d-flex align-items-center h-100">
+        <div class="container">
+          <div class="text-center pt-5">      
+            <h1 style="margin-bottom:15px;">Customer List</h1>          
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-12">
+              <div class="card">
+                <div class="card-body p-0">
+                  <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 350px; ">
+                    <table class="table table-striped mb-0">
+                      <thead style="background-color: #3081d7;">
+                        <tr>
+                            <th scope="col">customerId</th>
+                            <th scope="col">customerName</th>
+                              
+                            <th scope="col">customerEmail</th> 
+                                        
+                            <th scope="col">requiredAmount</th>                        
+                           
+                            <th scope="col">sanctionstatus</th>
+                            <th scope="col">sanctionAmount</th>  
+                           
+                            <th scope="col">disbursmentstatus</th>
+                           
+                            
+                             <th scope="col">Disbursement Mail</th>
+                             <th scope="col">Disburse Amount</th>
+                            
+                             <th scope="col">GenerateEmi</th>
+                             <th scope="col">Excel</th>
+                             <th scope="col">Pdf</th>
+                           
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let e of e"> 
+               
+                            <td>{{e.customerId}}</td>  
+                            <td>{{e.customerName}}</td>                             
+                            <td>{{e.customerEmail}}</td>                                                              
+                            <td>{{e.requiredAmount}}</td> 
+                          
+                             <td>{{e.sanctiondetails.status}}</td>  
+                             <td>{{e.sanctiondetails.loanAmtSanctioned}}</td>    
+                            
+                             <td>{{e.loanDisbursementDetails.paymentStatus}}</td>    
+                            
+                            
+                            
+                             <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'">
+                              <input type="button" (click)="sentDisbursementmail(e.customerId)" class="btn btn-success" value="Send Mail"> 
+                             </td>
+                             <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'">
+                               Pending
+                               </td>
+                               <td> <input type="button" (click)="disbursementupdate(e.loanDisbursementDetails.agreementId)" class="btn btn-success" value="Disburse Amt"> 
+                               
+                             </td>                        
+                               <!-- <td> <a  mat-raised-button color="primary" (click)="deleteCustomer(e.customerId)" style="margin-left: 5px;">
+                                <i class="fa fa-trash"></i>
+                              </a>
+                            </td>  -->
+                            <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemi(e.customerId) "  class="btn btn-success" value="GenerateEmi">
+                               
+                            </td>
+                            <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                              Pending
+                            </td>
+                           <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemiexcel(e.customerId) "  class="btn btn-success" value="Excel">
+                               
+                             </td>
+                             <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                               Pending
+                             </td>
+                              
+                             <td>
+                              <input type="button" (click)="pdf(e.customerId)" class="btn btn-success" value="PDF"> 
+                             </td>  
+                             
+                             
+                               
+                          
+
+
+
+
+
+
+                             <!-- <td> <a  mat-raised-button color="primary" (click)="deleteCustomer(e.customerId)" style="margin-left: 5px;">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>   -->
+                             
+                             
+                          <!-- <td *ngIf="e.status=='eligible'">
+                           <button routerLink="../recustomer" mat-raised-button color="success" style=" width:150px;" (click)="update(e)">register</button> 
+                          </td>
+                          <td *ngIf="e.status=='Enquiry'">
+                            <button class="btn btn-warning" mat-raised-button color="accent" style=" width:150px;" disabled>pending</button> 
+                           </td>  
+                           <td *ngIf="e.status=='lowCibil'">
+                            <button class="btn btn-danger" mat-raised-button color="warn" style=" width:150px;" (click)="rejectmail(e.cid)">rejection mail</button> 
+                           </td> 
+                           <td *ngIf="e.status=='rejected'">
+                            <button  class="btn btn-dark" mat-raised-button color="success" style=" width:150px;" disabled>rejected</button> 
+                           </td> 
+                           <td *ngIf="e.status=='registred'">
+                            <button  class="btn btn-success" mat-raised-button color="warn" style=" width:150px;" disabled>registered</button> 
+                           </td>            -->
+                        </tr>
+                    </tbody>
+                </table>
+               
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+   

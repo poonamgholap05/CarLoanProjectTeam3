@@ -1,0 +1,184 @@
+<section class="intro">
+  <div class="bg-image h-100" >
+    <div class="mask d-flex align-items-center h-100">
+      <div class="container">
+        <div class="text-center pt-5">      
+          <h1 style="margin-bottom:15px;">Emi List</h1>          
+        </div>
+        <div class="row justify-content-center">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body p-0">
+                <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 350px; ">
+                  <table class="table table-striped mb-0">
+                    <thead style="background-color: #3081d7;">
+                      <tr>
+                          <th scope="col">customerId</th>
+                          <th scope="col">customerName</th>
+                            
+                          <th scope="col">customerEmail</th> 
+                                      
+                          <th scope="col">requiredAmount</th>                        
+                         
+                          <th scope="col">sanctionstatus</th>
+                          <th scope="col">sanctionAmount</th>  
+                         
+                          <th scope="col">disbursmentstatus</th>
+                         
+                          
+                          
+                           <th scope="col">Action</th>
+                         
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let e of e"> 
+             
+                          <td>{{e.customerId}}</td>  
+                          <td>{{e.customerName}}</td>                             
+                          <td>{{e.customerEmail}}</td>                                                              
+                          <td>{{e.requiredAmount}}</td> 
+                        
+                           <td>{{e.sanctiondetails.status}}</td>  
+                           <td>{{e.sanctiondetails.loanAmtSanctioned}}</td>    
+                          
+                           <td>{{e.loanDisbursementDetails.paymentStatus}}</td>    
+                          
+                          
+                          
+                           <!-- <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'">
+                            <input type="button" (click)="sentDisbursementmail(e.customerId)" class="btn btn-success" value="Send Mail"> 
+                           </td>
+                           <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'">
+                             Pending
+                             </td>
+                             <td> <input type="button" (click)="disbursementupdate(e.loanDisbursementDetails.agreementId)" class="btn btn-success" value="Disburse Amt"> 
+                             
+                           </td>                         -->
+                             <!-- <td> <a  mat-raised-button color="primary" (click)="deleteCustomer(e.customerId)" style="margin-left: 5px;">
+                              <i class="fa fa-trash"></i>
+                            </a>
+                          </td>  -->
+                          <!-- <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemi(e.customerId) "  class="btn btn-success" value="GenerateEmi">
+                             
+                          </td>
+                          <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                            Pending
+                          </td>
+                         <td *ngIf="e.loanDisbursementDetails.paymentStatus=='sent'"> <input type="button" (click)="generateemiexcel(e.customerId) "  class="btn btn-success" value="Excel">
+                             
+                           </td>
+                           <td *ngIf="e.loanDisbursementDetails.paymentStatus!='sent'"> 
+                             Pending
+                           </td>
+                            
+                           <td>
+                            <input type="button" (click)="pdf(e.customerId)" class="btn btn-success" value="PDF"> 
+                           </td>   -->
+                           <td>
+                            <input type="button"  (click)="getemis(e.customerId)" class="btn btn-success" value="getViewEmi"> 
+                           </td>   
+                           <!-- <button type="button" mat-raised-button color="primary" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal" (click)="getemis(e.customerId)" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal">View Emi</button> -->
+                            <!-- <td><button (click)="openModal('custom-modal-1')">Open Modal 1</button></td>  --> 
+                             
+                        
+
+
+
+
+
+
+                           <!-- <td> <a  mat-raised-button color="primary" (click)="deleteCustomer(e.customerId)" style="margin-left: 5px;">
+                            <i class="fa fa-trash"></i>
+                          </a>
+                        </td>   -->
+                           
+                           
+                        <!-- <td *ngIf="e.status=='eligible'">
+                         <button routerLink="../recustomer" mat-raised-button color="success" style=" width:150px;" (click)="update(e)">register</button> 
+                        </td>
+                        <td *ngIf="e.status=='Enquiry'">
+                          <button class="btn btn-warning" mat-raised-button color="accent" style=" width:150px;" disabled>pending</button> 
+                         </td>  
+                         <td *ngIf="e.status=='lowCibil'">
+                          <button class="btn btn-danger" mat-raised-button color="warn" style=" width:150px;" (click)="rejectmail(e.cid)">rejection mail</button> 
+                         </td> 
+                         <td *ngIf="e.status=='rejected'">
+                          <button  class="btn btn-dark" mat-raised-button color="success" style=" width:150px;" disabled>rejected</button> 
+                         </td> 
+                         <td *ngIf="e.status=='registred'">
+                          <button  class="btn btn-success" mat-raised-button color="warn" style=" width:150px;" disabled>registered</button> 
+                         </td>            -->
+                      </tr>
+                  </tbody>
+              </table>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- <div class="modal fade" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Payer Emi Information</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="card">
+          <div class="card-body p-0">
+            <div class="table-responsive table-scroll" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px; ">
+
+        <table class="table table-warning table-hover  mb-0">
+          <thead class="thead-dark">
+            <tr>
+
+              <th scope="col">agreementDate</th>
+              <th scope="col">monthlyEmiAmount</th>                          
+              <th scope="col">status</th>
+              <th scope="col"></th>
+              
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let e of emilist"> 
+   
+
+              <td>{{e.agreementDate}}</td> 
+              <td>{{e.emiid}}</td> 
+              <td>{{e.status}}</td> 
+                                              
+              <td>
+                <div class="add-employee">
+                  <button *ngIf="e.status!='Paid'" type="button" mat-raised-button color="success" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal" (click)="emi(e.customerId,e.agreementDate)" data-bs-toggle="modal"
+                    data-bs-target="#exampleModal">Paid</button>
+                </div>
+              </td>          
+          </tr>
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+  -->

@@ -1,0 +1,58 @@
+<h1 style="text-align: center;">Sanction Letter</h1>
+<mat-card>
+  <mat-card-content fxLayout="column" fxLayoutAlign="center center">
+<mat-vertical-stepper [linear]="false" #stepper animationDuration="2000">
+  <form [formGroup]="sanctiondetails" (ngSubmit)="onSave()">
+  <mat-step label="sanctiondetails">
+    
+      <ng-template matStepLabel>sanctiondetails</ng-template>
+
+    
+      <mat-form-field>
+          <input matInput type="text" class="form-control"  placeholder=" sanctionId " formControlName="sanctionId">
+        </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text" class="form-control"  placeholder=" sanctionDate" formControlName="sanctionDate">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="applicantName" formControlName="applicantName">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="contactDetails" formControlName="contactDetails">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="loanAmtSanctioned" formControlName="loanAmtSanctioned">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="interestType" formControlName="interestType">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder="rateOfInterest" formControlName="rateOfInterest">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" loanTenure" formControlName="loanTenure">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" monthlyEmiAmount" formControlName="monthlyEmiAmount">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" modeOfPayment" formControlName="modeOfPayment">
+    </mat-form-field><br>
+    <mat-form-field>
+      <input matInput type="text"  class="form-control"  placeholder=" status" formControlName="status">
+    </mat-form-field><br>
+      
+      <div>
+       
+        <button mat-raised-button color="success"  type="submit" >Submit</button>
+        <button mat-raised-button color="primary" (click)="stepper.reset()">Reset</button>
+      </div>
+  </mat-step>
+  </form>
+</mat-vertical-stepper>
+  </mat-card-content>
+</mat-card>
+
+
+
+
